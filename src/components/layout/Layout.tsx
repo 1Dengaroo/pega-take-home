@@ -11,7 +11,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
       <div className="fixed left-0 z-50 h-screen">
         <Sidebar />
       </div>
-      <main className="min-h-svh flex flex-col relative ml-[var(--navbar-width)] bg-background">
+      <main className="min-h-svh flex flex-col relative ml-sidebar">
         {children}
       </main>
     </div>

@@ -1,30 +1,53 @@
-import { FC } from "react";
-import { NavLink } from "react-router-dom";
-import { navItems } from "../../types/nav";
-import CreateMenu from "./CreateMenu";
+import { FC, useState } from "react";
+import SidebarContext from "../../context/SidebarContext";
+import NavItemComponent from "../sidebar/NavItem";
+import Search from "../sidebar/Search";
+import { navItems, footerNavItems } from "../../types/nav";
+import SidebarHeader from "../sidebar/Header";
+import Separator from "../ui/Separator";
+import Profile from "../sidebar/Profile";
 
 const Sidebar: FC = () => {
+  const [collapsed, setCollapsed] = useState(true);
+
+  const handleSearch = (query: string) => {
+    console.log("Searching for:", query);
+  };
+
   return (
-    <aside className="w-[var(--navbar-width)] hover:w-64 bg-gray-900 text-white h-screen transition-all duration-300">
-      <div className="p-4 text-lg font-bold">PEGA</div>
-      <CreateMenu />
-      <nav className="mt-4 flex flex-col gap-2">
-        {navItems.map((item) => (
-          <NavLink
-            key={item.path}
-            to={item.path}
-            className={({ isActive }) =>
-              `flex items-center gap-2 px-4 py-2 transition-colors ${
-                isActive ? "bg-gray-800" : "hover:bg-gray-700"
-              }`
-            }
-          >
-            <item.icon />
-            <span className="hidden lg:inline">{item.label}</span>
-          </NavLink>
-        ))}
-      </nav>
-    </aside>
+    <SidebarContext.Provider value={{ collapsed }}>
+      <aside
+        className={`
+          ${collapsed ? "w-sidebar" : "w-sidebar-expanded"}
+          bg-primary text-primary-foreground
+          h-screen overflow-hidden transition-all duration-300 flex flex-col
+        `}
+        onMouseEnter={() => setCollapsed(false)}
+        onMouseLeave={() => setCollapsed(true)}
+      >
+        <SidebarHeader title="PEGA" subtitle="Demo" />
+        <Search onSearch={handleSearch} />
+        <Separator className="my-2" />
+
+        <nav className="overflow-y-scroll">
+          {navItems.map((item, i) => (
+            <NavItemComponent key={`${item.label}-${i}`} item={item} />
+          ))}
+        </nav>
+
+        <nav className="mt-auto">
+          <Separator className="my-2" />
+
+          {footerNavItems.map((item, i) => (
+            <NavItemComponent key={`${item.label}-${i}`} item={item} />
+          ))}
+
+          <div className="my-2.5">
+            <Profile />
+          </div>
+        </nav>
+      </aside>
+    </SidebarContext.Provider>
   );
 };
 
