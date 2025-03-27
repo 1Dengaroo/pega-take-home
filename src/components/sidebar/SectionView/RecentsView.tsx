@@ -36,12 +36,7 @@ const RecentsView: FC = () => {
                 {item.type}
               </div>
             </div>
-            <button
-              className="focus:outline-none focus:ring-2 focus:ring-selected rounded p-1 flex-shrink-0"
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
-            >
+            <button className="focus:outline-none focus:ring-2 focus:ring-selected rounded p-1 flex-shrink-0">
               <Bookmark size={16} fill="currentColor" />
             </button>
           </div>
@@ -79,13 +74,7 @@ const RecentsView: FC = () => {
                 {item.type}
               </div>
             </div>
-            <button
-              className="focus:outline-none focus:ring-2 focus:ring-selected rounded p-1 flex-shrink-0"
-              onClick={(e) => {
-                e.stopPropagation();
-                // Bookmark toggle logic would go here
-              }}
-            >
+            <button className="focus:outline-none focus:ring-2 focus:ring-selected rounded p-1 flex-shrink-0">
               <Bookmark
                 size={16}
                 fill={item.bookmarked ? "currentColor" : "none"}

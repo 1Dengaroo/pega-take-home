@@ -50,13 +50,7 @@ const SearchView: FC<SearchViewProps> = ({ initialSearchQuery }) => {
                 {item.type}
               </div>
             </div>
-            <button
-              className="focus:outline-none focus:ring-2 focus:ring-selected rounded p-1"
-              onClick={(e) => {
-                e.stopPropagation();
-                // Bookmark logic would go here
-              }}
-            >
+            <button className="focus:outline-none focus:ring-2 focus:ring-selected rounded p-1">
               <Bookmark size={16} />
             </button>
           </div>

@@ -42,7 +42,6 @@ const MobileSidebar: FC<MobileSidebarProps> = ({
           transform transition-transform duration-300 overflow-hidden
           ${isOpen ? "translate-x-0" : "translate-x-full"}
         `}
-        onClick={(e) => e.stopPropagation()}
       >
         {sectionView ? (
           <SectionView type={sectionView} onClose={onCloseSectionView} />

@@ -1,9 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "../components/layout/Layout";
 import MobileLayout from "../components/layout/MobileLayout";
 import * as Pages from "../pages";
@@ -14,7 +9,7 @@ const AppRoutes = () => {
   const LayoutComponent = isMobile ? MobileLayout : Layout;
 
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/home" replace />} />
         <Route
@@ -36,7 +31,7 @@ const AppRoutes = () => {
           }
         />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 };
 
