@@ -1,23 +1,23 @@
-import { FC, useContext, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import SidebarContext from "../../context/SidebarContext";
 import { NavItem } from "../../constants/nav";
-import { SectionViewType } from "../../constants/nav";
 import SidebarIconLabel from "./SidebarIconLabel";
+import { useSidebar } from "../../context/SidebarContext";
 
 interface NavItemComponentProps {
   item: NavItem;
-  onOpenSection: (type: SectionViewType) => void;
-  onLinkClick: () => void;
 }
 
-const NavItemComponent: FC<NavItemComponentProps> = ({
-  item,
-  onOpenSection,
-  onLinkClick,
-}) => {
-  const { collapsed } = useContext(SidebarContext);
+const NavItemComponent: FC<NavItemComponentProps> = ({ item }) => {
+  const { open, handleOpenSectionView, handleLinkClick } = useSidebar();
   const [isOpen, setIsOpen] = useState(false);
+
+  // Close dropdown when sidebar collapses
+  useEffect(() => {
+    if (!open && isOpen) {
+      setIsOpen(false);
+    }
+  }, [!open, isOpen]);
 
   if (item.type === "link" && item.path) {
     return (
@@ -28,7 +28,7 @@ const NavItemComponent: FC<NavItemComponentProps> = ({
             isActive ? "text-selected" : "text-primary-foreground"
           }`
         }
-        onClick={onLinkClick}
+        onClick={handleLinkClick}
       >
         <SidebarIconLabel
           icon={item.icon && <item.icon />}
@@ -40,8 +40,6 @@ const NavItemComponent: FC<NavItemComponentProps> = ({
   }
 
   if (item.type === "dropdown" && item.nested) {
-    if (collapsed && isOpen) setIsOpen(false);
-
     return (
       <div className="flex flex-col">
         <button
@@ -67,8 +65,6 @@ const NavItemComponent: FC<NavItemComponentProps> = ({
             <NavItemComponent
               key={`${nestedItem.label}-${index}`}
               item={nestedItem}
-              onOpenSection={onOpenSection}
-              onLinkClick={onLinkClick}
             />
           ))}
         </div>
@@ -79,9 +75,7 @@ const NavItemComponent: FC<NavItemComponentProps> = ({
   if (item.type === "sectionToggle") {
     return (
       <button
-        onClick={() => {
-          onOpenSection(item.secondaryViewType);
-        }}
+        onClick={() => handleOpenSectionView(item.secondaryViewType)}
         className="flex items-center h-sidebar-item-height cursor-pointer hover:text-white focus:ring-2 focus:outline-none focus:ring-selected w-full"
       >
         <SidebarIconLabel

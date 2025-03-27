@@ -1,13 +1,19 @@
 import { useState } from "react";
 import { Search as SearchIcon } from "lucide-react";
+import { useSidebar } from "../../context/SidebarContext";
 
 type SearchProps = {
   initialSearchQuery?: string;
-  onSearch: (query: string) => void;
 };
 
-const Search = ({ initialSearchQuery = "", onSearch }: SearchProps) => {
+const Search = ({ initialSearchQuery = "" }: SearchProps) => {
   const [searchQuery, setSearchQuery] = useState(initialSearchQuery);
+  const { handleSearch } = useSidebar();
+
+  const processSearch = (query: string) => {
+    if (query.trim() === "") return;
+    handleSearch(query);
+  };
 
   return (
     <div className="relative flex items-center">
@@ -21,8 +27,7 @@ const Search = ({ initialSearchQuery = "", onSearch }: SearchProps) => {
         onChange={(e) => setSearchQuery(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
-            if (searchQuery.trim() === "") return;
-            onSearch(searchQuery);
+            processSearch(searchQuery);
           }
         }}
         className={`

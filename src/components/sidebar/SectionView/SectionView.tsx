@@ -1,26 +1,22 @@
 import { FC } from "react";
 import { ChevronLeft } from "lucide-react";
-import { SectionViewType } from "../../../constants/nav";
 import SearchView from "./SearchView";
 import NotificationsView from "./NotificationView";
 import RecentsView from "./RecentsView";
+import { useSidebar } from "../../../context/SidebarContext";
 
 interface SectionViewProps {
-  type: SectionViewType;
   initialSearchQuery?: string;
-  onClose: () => void;
 }
 
-const SectionView: FC<SectionViewProps> = ({
-  type,
-  initialSearchQuery,
-  onClose,
-}) => {
+const SectionView: FC<SectionViewProps> = ({ initialSearchQuery }) => {
+  const { handleCloseSectionView, sectionView: type } = useSidebar();
+  if (!type) return null;
   return (
     <div className="h-full flex flex-col text-primary-foreground px-sidebar-content-padding">
       <div className="relative flex items-center h-sidebar-header-height">
         <button
-          onClick={onClose}
+          onClick={handleCloseSectionView}
           className="absolute left-0 flex justify-center items-center cursor-pointer"
         >
           <ChevronLeft size={20} />
@@ -31,7 +27,7 @@ const SectionView: FC<SectionViewProps> = ({
         </span>
 
         <button
-          onClick={onClose}
+          onClick={handleCloseSectionView}
           className="cursor-pointer absolute right-0 text-muted-foreground hover:text-primary-foreground underline"
         >
           See all

@@ -1,5 +1,6 @@
 import { FC, ReactNode } from "react";
 import Sidebar from "./Sidebar";
+import { SidebarProvider } from "../../context/SidebarContext";
 
 interface LayoutProps {
   children: ReactNode;
@@ -7,14 +8,16 @@ interface LayoutProps {
 
 const Layout: FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="min-h-svh overscroll-none antialiased bg-background">
-      <div className="fixed left-0 z-50 h-screen">
-        <Sidebar />
+    <SidebarProvider>
+      <div className="min-h-svh overscroll-none antialiased bg-background">
+        <div className="fixed left-0 z-50 h-screen">
+          <Sidebar />
+        </div>
+        <main className="min-h-svh flex flex-col relative ml-sidebar">
+          {children}
+        </main>
       </div>
-      <main className="min-h-svh flex flex-col relative ml-sidebar">
-        {children}
-      </main>
-    </div>
+    </SidebarProvider>
   );
 };
 

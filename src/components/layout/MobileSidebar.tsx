@@ -1,51 +1,37 @@
 import { FC } from "react";
-import { NavItem, SectionViewType } from "../../constants/nav";
+import { NavItem } from "../../constants/nav";
 import NavItemComponent from "../sidebar/NavItem";
 import Profile from "../sidebar/Profile";
 import SectionView from "../sidebar/SectionView/SectionView";
 import Separator from "../ui/Separator";
 import { footerNavItems } from "../../constants/nav";
+import { useSidebar } from "../../context/SidebarContext";
 
 interface MobileSidebarProps {
   navItems: NavItem[];
-  isOpen: boolean;
-  sectionView: SectionViewType | null;
-
-  onClose: () => void;
-  onOpenSectionView: (type: SectionViewType) => void;
-  onCloseSectionView: () => void;
 }
 
-const MobileSidebar: FC<MobileSidebarProps> = ({
-  navItems,
-  isOpen,
-  onClose,
-  sectionView,
-  onOpenSectionView,
-  onCloseSectionView,
-}) => {
-  const handleLinkClick = () => {
-    onClose();
-  };
+const MobileSidebar: FC<MobileSidebarProps> = ({ navItems }) => {
+  const { sectionView, handleCloseSidebar, open } = useSidebar();
 
   return (
     <div
       className={`
         fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity
-        ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}
+        ${open ? "opacity-100" : "opacity-0 pointer-events-none"}
       `}
-      onClick={onClose}
+      onClick={handleCloseSidebar}
     >
       <div
         className={`
           absolute top-0 right-0 w-mobile-sidebar-width h-full bg-primary text-primary-foreground
           transform transition-transform duration-300 overflow-hidden
-          ${isOpen ? "translate-x-0" : "translate-x-full"}
+          ${open ? "translate-x-0" : "translate-x-full"}
         `}
         onClick={(e) => e.stopPropagation()}
       >
         {sectionView ? (
-          <SectionView type={sectionView} onClose={onCloseSectionView} />
+          <SectionView />
         ) : (
           <>
             <nav className="overflow-y-auto my-2">
@@ -56,8 +42,6 @@ const MobileSidebar: FC<MobileSidebarProps> = ({
                     <NavItemComponent
                       key={`sidebar-${item.label}-${index}`}
                       item={item}
-                      onOpenSection={onOpenSectionView}
-                      onLinkClick={handleLinkClick}
                     />
                   ))}
 
@@ -70,8 +54,6 @@ const MobileSidebar: FC<MobileSidebarProps> = ({
                 <NavItemComponent
                   key={`footer-${item.label}-${index}`}
                   item={item}
-                  onOpenSection={onOpenSectionView}
-                  onLinkClick={handleLinkClick}
                 />
               ))}
 

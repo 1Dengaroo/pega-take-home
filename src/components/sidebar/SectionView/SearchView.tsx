@@ -10,17 +10,10 @@ interface SearchViewProps {
 const SearchView: FC<SearchViewProps> = ({ initialSearchQuery }) => {
   const [selectedItem, setSelectedItem] = useState<number | null>(null);
 
-  const handleSearch = (query: string) => {
-    console.log("Searching for:", query);
-  };
-
   return (
     <div className="py-2">
       <div className="mb-4">
-        <Search
-          initialSearchQuery={initialSearchQuery}
-          onSearch={handleSearch}
-        />
+        <Search initialSearchQuery={initialSearchQuery} />
       </div>
       {searchItems.map((item, index) => (
         <div

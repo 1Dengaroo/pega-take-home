@@ -2,18 +2,14 @@ import { FC } from "react";
 import { NavLink } from "react-router-dom";
 import { MoreHorizontal, Search } from "lucide-react";
 import { NavItem } from "../../constants/nav";
+import { useSidebar } from "../../context/SidebarContext";
 
 interface MobileBottomNavProps {
   navItems: NavItem[];
-  onMoreClick: () => void;
-  onSearchButtonClick: () => void;
 }
 
-const MobileBottomNav: FC<MobileBottomNavProps> = ({
-  navItems,
-  onMoreClick,
-  onSearchButtonClick,
-}) => {
+const MobileBottomNav: FC<MobileBottomNavProps> = ({ navItems }) => {
+  const { handleOpenSidebar, handleSearch } = useSidebar();
   const showMoreButton = navItems.length >= 3;
 
   return (
@@ -76,7 +72,7 @@ const MobileBottomNav: FC<MobileBottomNavProps> = ({
         })}
 
         <button
-          onClick={onSearchButtonClick}
+          onClick={() => handleSearch("")}
           className="flex flex-col items-center justify-center w-full text-xs pt-1 text-muted-foreground hover:text-white cursor-pointer"
         >
           <Search />
@@ -85,7 +81,7 @@ const MobileBottomNav: FC<MobileBottomNavProps> = ({
 
         {showMoreButton && (
           <button
-            onClick={onMoreClick}
+            onClick={handleOpenSidebar}
             className="flex flex-col items-center justify-center w-full text-xs pt-1 text-muted-foreground hover:text-white cursor-pointer"
           >
             <MoreHorizontal />
