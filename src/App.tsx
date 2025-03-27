@@ -1,11 +1,11 @@
 import AppRoutes from './routes/AppRoutes';
-import SidebarContext from './context/SidebarContext';
+import { SidebarProvider } from './context/SidebarContext';
 
 function App() {
   return (
-    <SidebarContext.Provider>
+    <SidebarProvider>
       <AppRoutes />
-    </SidebarContext.Provider>
+    </SidebarProvider>
   );
 }
 
