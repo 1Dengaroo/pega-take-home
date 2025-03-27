@@ -1,17 +1,15 @@
 const Profile = () => {
   return (
     <div className="flex items-center">
-      <div className="w-sidebar flex justify-center items-center flex-shrink-0">
+      <div className="w-sidebar flex flex-shrink-0 items-center justify-center">
         <img
-          src={"/avatar-fallback.svg"}
-          alt={"alt"}
-          className={`h-sidebar-avatar-dimensions w-sidebar-avatar-dimensions rounded-full object-cover bg-muted p-1`}
+          src={'/avatar-fallback.svg'}
+          alt={'alt'}
+          className={`h-sidebar-avatar-dimensions w-sidebar-avatar-dimensions bg-muted rounded-full object-cover p-1`}
         />
       </div>
 
-      <span className="whitespace-nowrap text-ellipsis font-semibold">
-        Username
-      </span>
+      <span className="font-semibold text-ellipsis whitespace-nowrap">Username</span>
     </div>
   );
 };

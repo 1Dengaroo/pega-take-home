@@ -1,8 +1,9 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
-  --font-sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Ubuntu, sans-serif;
+  --font-sans:
+    Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Ubuntu,
+    sans-serif;
 
   --spacing-sidebar: 80px;
   --spacing-sidebar-expanded: 375px;
@@ -33,7 +34,7 @@
 
 @layer base {
   body {
-    @apply overscroll-none bg-background text-foreground;
+    @apply bg-background text-foreground overscroll-none;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
   }

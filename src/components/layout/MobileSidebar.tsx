@@ -1,11 +1,11 @@
-import { FC } from "react";
-import { NavItem } from "../../constants/nav";
-import NavItemComponent from "../sidebar/NavItem";
-import Profile from "../sidebar/Profile";
-import SectionView from "../sidebar/SectionView/SectionView";
-import Separator from "../ui/Separator";
-import { footerNavItems } from "../../constants/nav";
-import { useSidebar } from "../../context/SidebarContext";
+import { FC } from 'react';
+import { NavItem } from '../../constants/nav';
+import NavItemComponent from '../sidebar/NavItem';
+import Profile from '../sidebar/Profile';
+import SectionView from '../sidebar/SectionView/SectionView';
+import Separator from '../ui/Separator';
+import { footerNavItems } from '../../constants/nav';
+import { useSidebar } from '../../hooks/useSidebar';
 
 interface MobileSidebarProps {
   navItems: NavItem[];
@@ -16,33 +16,23 @@ const MobileSidebar: FC<MobileSidebarProps> = ({ navItems }) => {
 
   return (
     <div
-      className={`
-        fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity
-        ${open ? "opacity-100" : "opacity-0 pointer-events-none"}
-      `}
+      className={`bg-opacity-50 fixed inset-0 z-50 bg-black transition-opacity ${open ? 'opacity-100' : 'pointer-events-none opacity-0'} `}
       onClick={handleCloseSidebar}
     >
       <div
-        className={`
-          absolute top-0 right-0 w-mobile-sidebar-width h-full bg-primary text-primary-foreground
-          transform transition-transform duration-300 overflow-hidden
-          ${open ? "translate-x-0" : "translate-x-full"}
-        `}
+        className={`w-mobile-sidebar-width bg-primary text-primary-foreground absolute top-0 right-0 h-full transform overflow-hidden transition-transform duration-300 ${open ? 'translate-x-0' : 'translate-x-full'} `}
         onClick={(e) => e.stopPropagation()}
       >
         {sectionView ? (
           <SectionView />
         ) : (
           <>
-            <nav className="overflow-y-auto my-2">
+            <nav className="my-2 overflow-y-auto">
               {/* Only render remaining nav items if there are any */}
               {navItems.length > 0 && (
                 <>
                   {navItems.map((item, index) => (
-                    <NavItemComponent
-                      key={`sidebar-${item.label}-${index}`}
-                      item={item}
-                    />
+                    <NavItemComponent key={`sidebar-${item.label}-${index}`} item={item} />
                   ))}
 
                   <Separator className="my-4" />
@@ -51,10 +41,7 @@ const MobileSidebar: FC<MobileSidebarProps> = ({ navItems }) => {
 
               {/* Always render footer nav items */}
               {footerNavItems.map((item, index) => (
-                <NavItemComponent
-                  key={`footer-${item.label}-${index}`}
-                  item={item}
-                />
+                <NavItemComponent key={`footer-${item.label}-${index}`} item={item} />
               ))}
 
               <div className="my-1.5">

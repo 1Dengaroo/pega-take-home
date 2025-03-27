@@ -1,8 +1,8 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Layout from "../components/layout/Layout";
-import MobileLayout from "../components/layout/MobileLayout";
-import * as Pages from "../pages";
-import useWindowWidth from "../hooks/useWindowWidth";
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Layout from '../components/layout/Layout';
+import MobileLayout from '../components/layout/MobileLayout';
+import * as Pages from '../pages';
+import useWindowWidth from '../hooks/useWindowWidth';
 
 const AppRoutes = () => {
   const { isMobile } = useWindowWidth();

@@ -1,8 +1,8 @@
-import { FC } from "react";
-import { NavLink } from "react-router-dom";
-import { MoreHorizontal, Search } from "lucide-react";
-import { NavItem } from "../../constants/nav";
-import { useSidebar } from "../../context/SidebarContext";
+import { FC } from 'react';
+import { NavLink } from 'react-router-dom';
+import { MoreHorizontal, Search } from 'lucide-react';
+import { NavItem } from '../../constants/nav';
+import { useSidebar } from '../../hooks/useSidebar';
 
 interface MobileBottomNavProps {
   navItems: NavItem[];
@@ -13,24 +13,23 @@ const MobileBottomNav: FC<MobileBottomNavProps> = ({ navItems }) => {
   const showMoreButton = navItems.length >= 3;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-primary border-t border-border h-mobile-navbar-height z-50">
-      <div className="mx-auto max-w-mobile-navbar-container-width flex items-center justify-around h-full">
+    <div className="bg-primary border-border h-mobile-navbar-height fixed right-0 bottom-0 left-0 z-50 border-t">
+      <div className="max-w-mobile-navbar-container-width mx-auto flex h-full items-center justify-around">
         {navItems.map((item, index) => {
-          if (item.type === "link") {
+          if (item.type === 'link') {
             return (
               <NavLink
                 key={index}
                 to={item.path}
-                className={({ isActive }) => `
-                flex flex-col items-center justify-center w-full text-xs pt-1 hover:text-white
-                ${isActive ? "text-selected" : "text-muted-foreground"}
-              `}
+                className={({ isActive }) =>
+                  `flex w-full flex-col items-center justify-center pt-1 text-xs hover:text-white ${isActive ? 'text-selected' : 'text-muted-foreground'} `
+                }
               >
                 {item.icon && (
                   <div className="relative">
                     <item.icon />
                     {item.notificationCount && (
-                      <span className="absolute -top-1.5 -right-1.5 px-1 bg-destructive text-destructive-foreground text-xs rounded-full flex items-center justify-center min-w-5 h-5">
+                      <span className="bg-destructive text-destructive-foreground absolute -top-1.5 -right-1.5 flex h-5 min-w-5 items-center justify-center rounded-full px-1 text-xs">
                         {item.notificationCount}
                       </span>
                     )}
@@ -39,25 +38,23 @@ const MobileBottomNav: FC<MobileBottomNavProps> = ({ navItems }) => {
                 <span className="mt-1">{item.label}</span>
               </NavLink>
             );
-          } else if (item.type === "dropdown") {
+          } else if (item.type === 'dropdown') {
             // Not entirely sure how to handle dropdowns in the mobile nav
-            const firstNestedPath =
-              item.nested[0].type === "link" ? item.nested[0].path : "#";
+            const firstNestedPath = item.nested[0].type === 'link' ? item.nested[0].path : '#';
 
             return (
               <NavLink
                 key={index}
                 to={firstNestedPath}
-                className={({ isActive }) => `
-                flex flex-col items-center justify-center w-full text-xs pt-1 hover:text-white
-                ${isActive ? "text-selected" : "text-muted-foreground"}
-              `}
+                className={({ isActive }) =>
+                  `flex w-full flex-col items-center justify-center pt-1 text-xs hover:text-white ${isActive ? 'text-selected' : 'text-muted-foreground'} `
+                }
               >
                 {item.icon && (
                   <div className="relative">
                     <item.icon />
                     {item.notificationCount && (
-                      <span className="absolute -top-2.5 -right-2.5 px-1 bg-destructive text-destructive-foreground text-xs rounded-full flex items-center justify-center min-w-5 h-5">
+                      <span className="bg-destructive text-destructive-foreground absolute -top-2.5 -right-2.5 flex h-5 min-w-5 items-center justify-center rounded-full px-1 text-xs">
                         {item.notificationCount}
                       </span>
                     )}
@@ -72,8 +69,8 @@ const MobileBottomNav: FC<MobileBottomNavProps> = ({ navItems }) => {
         })}
 
         <button
-          onClick={() => handleSearch("")}
-          className="flex flex-col items-center justify-center w-full text-xs pt-1 text-muted-foreground hover:text-white cursor-pointer"
+          onClick={() => handleSearch('')}
+          className="text-muted-foreground flex w-full cursor-pointer flex-col items-center justify-center pt-1 text-xs hover:text-white"
         >
           <Search />
           <span className="mt-1">Search</span>
@@ -82,7 +79,7 @@ const MobileBottomNav: FC<MobileBottomNavProps> = ({ navItems }) => {
         {showMoreButton && (
           <button
             onClick={handleOpenSidebar}
-            className="flex flex-col items-center justify-center w-full text-xs pt-1 text-muted-foreground hover:text-white cursor-pointer"
+            className="text-muted-foreground flex w-full cursor-pointer flex-col items-center justify-center pt-1 text-xs hover:text-white"
           >
             <MoreHorizontal />
             <span className="mt-1">More</span>

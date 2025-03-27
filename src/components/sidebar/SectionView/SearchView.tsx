@@ -1,7 +1,7 @@
-import { FC, useState } from "react";
-import { searchItems } from "../../../constants/sample";
-import Search from "../Search";
-import { Bookmark } from "lucide-react";
+import { FC, useState } from 'react';
+import { searchItems } from '../../../constants/sample';
+import Search from '../Search';
+import { Bookmark } from 'lucide-react';
 
 interface SearchViewProps {
   initialSearchQuery?: string;
@@ -18,32 +18,23 @@ const SearchView: FC<SearchViewProps> = ({ initialSearchQuery }) => {
       {searchItems.map((item, index) => (
         <div
           key={index}
-          className={`
-            py-3 px-2 cursor-pointer space-y-1.5 transition-colors
-            hover:text-white focus:outline-none 
-            ${
-              selectedItem === index
-                ? "text-selected"
-                : "text-primary-foreground"
-            }
-            ${item.title.length > 30 ? "h-auto" : ""}
-          `}
+          className={`cursor-pointer space-y-1.5 px-2 py-3 transition-colors hover:text-white focus:outline-none ${
+            selectedItem === index ? 'text-selected' : 'text-primary-foreground'
+          } ${item.title.length > 30 ? 'h-auto' : ''} `}
           onClick={() => setSelectedItem(index)}
           tabIndex={0}
           onKeyDown={(e) => {
-            if (e.key === "Enter") {
+            if (e.key === 'Enter') {
               setSelectedItem(index);
             }
           }}
         >
-          <div className="flex justify-between items-start">
+          <div className="flex items-start justify-between">
             <div className="overflow-hidden">
-              <div className="font-medium text-sm">{item.title}</div>
-              <div className="text-xs text-muted-foreground mt-1">
-                {item.type}
-              </div>
+              <div className="text-sm font-medium">{item.title}</div>
+              <div className="text-muted-foreground mt-1 text-xs">{item.type}</div>
             </div>
-            <button className="focus:outline-none focus:ring-2 focus:ring-selected rounded p-1">
+            <button className="focus:ring-selected rounded p-1 focus:ring-2 focus:outline-none">
               <Bookmark size={16} />
             </button>
           </div>

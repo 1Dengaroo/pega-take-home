@@ -1,5 +1,5 @@
-import { createContext, useState, ReactNode, useContext, useMemo } from "react";
-import { SectionViewType } from "../constants/nav";
+import { createContext, useState, ReactNode, useContext, useMemo } from 'react';
+import { SectionViewType } from '../constants/nav';
 
 interface SidebarContextType {
   open: boolean;
@@ -17,24 +17,24 @@ interface SidebarContextType {
 const SidebarContext = createContext<SidebarContextType>({
   open: true,
   sectionView: null,
-  searchQuery: "",
+  searchQuery: '',
 
   handleSearch: () => {},
   handleOpenSectionView: () => {},
   handleCloseSectionView: () => {},
   handleLinkClick: () => {},
   handleOpenSidebar: () => {},
-  handleCloseSidebar: () => {},
+  handleCloseSidebar: () => {}
 });
 
 export const SidebarProvider = ({ children }: { children: ReactNode }) => {
   const [open, setOpen] = useState(false);
   const [sectionView, setSectionView] = useState<SectionViewType | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   const contextValue = useMemo(() => {
     const handleSearch = (query: string) => {
-      setSectionView("search");
+      setSectionView('search');
       setSearchQuery(query);
       setOpen(true);
     };
@@ -72,15 +72,11 @@ export const SidebarProvider = ({ children }: { children: ReactNode }) => {
       handleCloseSectionView,
       handleLinkClick,
       handleOpenSidebar,
-      handleCloseSidebar,
+      handleCloseSidebar
     };
   }, [open, sectionView, searchQuery]);
 
-  return (
-    <SidebarContext.Provider value={contextValue}>
-      {children}
-    </SidebarContext.Provider>
-  );
+  return <SidebarContext.Provider value={contextValue}>{children}</SidebarContext.Provider>;
 };
 
 export const useSidebar = () => useContext(SidebarContext);

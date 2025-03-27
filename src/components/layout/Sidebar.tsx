@@ -1,30 +1,19 @@
-import { FC } from "react";
-import NavItemComponent from "../sidebar/NavItem";
-import Search from "../sidebar/Search";
-import { navItems, footerNavItems } from "../../constants/nav";
-import SidebarHeader from "../sidebar/Header";
-import Separator from "../ui/Separator";
-import Profile from "../sidebar/Profile";
-import SectionView from "../sidebar/SectionView/SectionView";
-import { useSidebar } from "../../context/SidebarContext";
+import { FC } from 'react';
+import NavItemComponent from '../sidebar/NavItem';
+import Search from '../sidebar/Search';
+import { navItems, footerNavItems } from '../../constants/nav';
+import SidebarHeader from '../sidebar/Header';
+import Separator from '../ui/Separator';
+import Profile from '../sidebar/Profile';
+import SectionView from '../sidebar/SectionView/SectionView';
+import { useSidebar } from '../../hooks/useSidebar';
 
 const Sidebar: FC = () => {
-  const {
-    open,
-    handleOpenSidebar,
-    handleCloseSidebar,
-    sectionView,
-    searchQuery,
-  } = useSidebar();
+  const { open, handleOpenSidebar, handleCloseSidebar, sectionView, searchQuery } = useSidebar();
 
   return (
     <aside
-      className={`
-        ${!open ? "w-sidebar" : "w-sidebar-expanded"}
-        bg-primary text-primary-foreground
-        h-screen overflow-hidden transition-all 
-        duration-300 flex flex-col
-      `}
+      className={` ${!open ? 'w-sidebar' : 'w-sidebar-expanded'} bg-primary text-primary-foreground flex h-screen flex-col overflow-hidden transition-all duration-300`}
       onMouseEnter={() => handleOpenSidebar()}
       onMouseLeave={() => handleCloseSidebar()}
     >
