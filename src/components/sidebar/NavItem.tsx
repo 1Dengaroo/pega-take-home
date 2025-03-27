@@ -1,13 +1,18 @@
 import { FC, useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import SidebarContext from "../../context/SidebarContext";
-import { NavItem } from "../../types/nav";
+import { NavItem } from "../../constants/nav";
+import { SectionViewType } from "../../constants/nav";
 
 interface NavItemComponentProps {
   item: NavItem;
+  onOpenSection: (type: SectionViewType) => void;
 }
 
-const NavItemComponent: FC<NavItemComponentProps> = ({ item }) => {
+const NavItemComponent: FC<NavItemComponentProps> = ({
+  item,
+  onOpenSection,
+}) => {
   const { collapsed } = useContext(SidebarContext);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -53,10 +58,30 @@ const NavItemComponent: FC<NavItemComponentProps> = ({ item }) => {
             <NavItemComponent
               key={`${nestedItem.label}-${index}`}
               item={nestedItem}
+              onOpenSection={onOpenSection}
             />
           ))}
         </div>
       </div>
+    );
+  }
+
+  if (item.type === "sectionToggle") {
+    return (
+      <button
+        onClick={() => {
+          onOpenSection(item.secondaryViewType);
+        }}
+        className="flex items-center h-12 cursor-pointer"
+      >
+        <div className="w-sidebar flex justify-center items-center flex-shrink-0">
+          {item.icon && <item.icon />}
+        </div>
+
+        <span className="whitespace-nowrap text-ellipsis font-semibold">
+          {item.label}
+        </span>
+      </button>
     );
   }
 
