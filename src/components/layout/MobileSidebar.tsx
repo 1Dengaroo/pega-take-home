@@ -42,6 +42,7 @@ const MobileSidebar: FC<MobileSidebarProps> = ({
           transform transition-transform duration-300 overflow-hidden
           ${isOpen ? "translate-x-0" : "translate-x-full"}
         `}
+        onClick={(e) => e.stopPropagation()}
       >
         {sectionView ? (
           <SectionView type={sectionView} onClose={onCloseSectionView} />
@@ -73,11 +74,11 @@ const MobileSidebar: FC<MobileSidebarProps> = ({
                   onLinkClick={handleLinkClick}
                 />
               ))}
-            </nav>
 
-            <div className="absolute bottom-0 left-0 right-0 border-t border-white/10">
-              <Profile />
-            </div>
+              <div className="my-1.5">
+                <Profile />
+              </div>
+            </nav>
           </>
         )}
       </div>

@@ -28,11 +28,11 @@ const NotificationsView: FC = () => {
           }}
         >
           <div className="flex items-start gap-3">
-            <div className="w-8 h-8 rounded-full bg-white/10 flex-shrink-0 overflow-hidden">
+            <div className="w-sidebar-avatar-dimensions h-sidebar-avatar-dimensions rounded-full bg-white flex-shrink-0 overflow-hidden">
               <img
                 src={item.avatar}
                 alt=""
-                className="w-sidebar-avatar-dimensions h-sidebar-avatar-dimensions object-cover"
+                className="w-sidebar-avatar-dimensions h-sidebar-avatar-dimensions object-cover p-1"
               />
             </div>
             <div className="flex-1 space-y-1.5 overflow-hidden">

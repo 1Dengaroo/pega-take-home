@@ -77,7 +77,7 @@ const MobileBottomNav: FC<MobileBottomNavProps> = ({
 
         <button
           onClick={onSearchButtonClick}
-          className="flex flex-col items-center justify-center w-full text-xs pt-1 text-muted-foreground hover:text-white"
+          className="flex flex-col items-center justify-center w-full text-xs pt-1 text-muted-foreground hover:text-white cursor-pointer"
         >
           <Search />
           <span className="mt-1">Search</span>
@@ -86,7 +86,7 @@ const MobileBottomNav: FC<MobileBottomNavProps> = ({
         {showMoreButton && (
           <button
             onClick={onMoreClick}
-            className="flex flex-col items-center justify-center w-full text-xs pt-1 text-muted-foreground hover:text-white"
+            className="flex flex-col items-center justify-center w-full text-xs pt-1 text-muted-foreground hover:text-white cursor-pointer"
           >
             <MoreHorizontal />
             <span className="mt-1">More</span>

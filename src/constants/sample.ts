@@ -5,7 +5,7 @@ export const notificationItems = [
     type: "GOAL-2021",
     timestamp: "1h",
     bookmarked: false,
-    avatar: "/path/to/avatar1.jpg",
+    avatar: "/avatar-fallback.svg",
   },
   {
     title: "Mama's got a brand new bag, and Papa's got a new pair of shoes.",
@@ -13,7 +13,7 @@ export const notificationItems = [
     type: "EPIC-1211",
     timestamp: "2d",
     bookmarked: true,
-    avatar: "/path/to/avatar2.jpg",
+    avatar: "/avatar-fallback.svg",
   },
   {
     title: "Cosmos Work",
@@ -21,7 +21,7 @@ export const notificationItems = [
     type: "SPACE-912",
     timestamp: "1w",
     bookmarked: false,
-    avatar: "/path/to/avatar3.jpg",
+    avatar: "/avatar-fallback.svg",
   },
   {
     title: "Sample notification goes here...",
@@ -29,7 +29,7 @@ export const notificationItems = [
     type: "GOAL-2021",
     timestamp: "3d",
     bookmarked: true,
-    avatar: "/path/to/avatar4.jpg",
+    avatar: "/avatar-fallback.svg",
   },
 ];
 
