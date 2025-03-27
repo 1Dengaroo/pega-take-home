@@ -43,6 +43,7 @@ const NavItemComponent: FC<NavItemComponentProps> = ({ item }) => {
     return (
       <div className="flex flex-col">
         <button
+          aria-expanded={isOpen}
           onClick={() => setIsOpen(!isOpen)}
           className={`h-sidebar-item-height focus:ring-selected flex cursor-pointer items-center hover:text-white focus:ring-2 focus:outline-none ${
             isOpen ? 'text-selected' : 'text-primary-foreground'

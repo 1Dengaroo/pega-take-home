@@ -2,7 +2,6 @@ import { FC, ReactNode, useMemo } from 'react';
 import MobileBottomNav from './MobileBottomNav';
 import MobileSidebar from './MobileSidebar';
 import { navItems } from '../../constants/nav';
-import { SidebarProvider } from '../../context/SidebarContext';
 
 interface MobileLayoutProps {
   children: ReactNode;
@@ -21,14 +20,12 @@ const MobileLayout: FC<MobileLayoutProps> = ({ children }) => {
   }, []);
 
   return (
-    <SidebarProvider>
-      <div className="bg-background min-h-svh overscroll-none antialiased">
-        <main className="relative flex min-h-svh flex-col px-4 pt-4 pb-16">{children}</main>
+    <div className="bg-background min-h-svh overscroll-none antialiased">
+      <main className="relative flex min-h-svh flex-col px-4 pt-4 pb-16">{children}</main>
 
-        <MobileBottomNav navItems={bottomNavItems} />
-        <MobileSidebar navItems={sidebarNavItems} />
-      </div>
-    </SidebarProvider>
+      <MobileBottomNav navItems={bottomNavItems} />
+      <MobileSidebar navItems={sidebarNavItems} />
+    </div>
   );
 };
 

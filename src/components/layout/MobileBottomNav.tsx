@@ -19,6 +19,7 @@ const MobileBottomNav: FC<MobileBottomNavProps> = ({ navItems }) => {
           if (item.type === 'link') {
             return (
               <NavLink
+                aria-label={'Navigate to ' + item.label}
                 key={index}
                 to={item.path}
                 className={({ isActive }) =>
@@ -44,6 +45,7 @@ const MobileBottomNav: FC<MobileBottomNavProps> = ({ navItems }) => {
 
             return (
               <NavLink
+                aria-label={'Navigate to ' + item.label}
                 key={index}
                 to={firstNestedPath}
                 className={({ isActive }) =>
@@ -69,6 +71,7 @@ const MobileBottomNav: FC<MobileBottomNavProps> = ({ navItems }) => {
         })}
 
         <button
+          aria-label="Open Search"
           onClick={() => handleSearch('')}
           className="text-muted-foreground flex w-full cursor-pointer flex-col items-center justify-center pt-1 text-xs hover:text-white"
         >
@@ -78,6 +81,7 @@ const MobileBottomNav: FC<MobileBottomNavProps> = ({ navItems }) => {
 
         {showMoreButton && (
           <button
+            aria-label="Open Menu"
             onClick={handleOpenSidebar}
             className="text-muted-foreground flex w-full cursor-pointer flex-col items-center justify-center pt-1 text-xs hover:text-white"
           >
