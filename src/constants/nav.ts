@@ -17,6 +17,7 @@ export type SectionViewType = "search" | "notifications" | "recents";
 type BaseNavItem = {
   label: string;
   icon?: FC;
+  notificationCount?: string;
 };
 
 type LinkNavItem = BaseNavItem & {
@@ -41,6 +42,7 @@ export const navItems: NavItem[] = [
     label: "Create",
     type: "dropdown",
     icon: Plus,
+    notificationCount: "2",
     nested: [
       {
         label: "Bug",
@@ -102,6 +104,7 @@ export const footerNavItems: NavItem[] = [
   {
     label: "Notifications",
     type: "sectionToggle",
+    notificationCount: "99",
     secondaryViewType: "notifications",
     icon: Bell,
   },
@@ -116,44 +119,5 @@ export const footerNavItems: NavItem[] = [
     type: "link",
     path: "/applications",
     icon: ClipboardList,
-  },
-];
-
-export type NotificationViewItem = {
-  title: string;
-  subtitle: string;
-  type: string;
-  timestamp?: string;
-  bookmarked?: boolean;
-};
-
-export const sampleNotificationItems = [
-  {
-    title: "New UI Patterns",
-    subtitle: "Melvin Fields commented on this",
-    type: "GOAL-2021",
-    timestamp: "1h",
-    bookmarked: false,
-  },
-  {
-    title: "Mama's got a brand new bag, and Papa's got a new pair of shoes.",
-    subtitle: "Lula Richards updated the stage on this",
-    type: "EPIC-1211",
-    timestamp: "2d",
-    bookmarked: true,
-  },
-  {
-    title: "Cosmos Work",
-    subtitle: "Corey Lee followed this",
-    type: "SPACE-912",
-    timestamp: "1w",
-    bookmarked: false,
-  },
-  {
-    title: "Sample notification goes here...",
-    subtitle: "Additional details about this item",
-    type: "GOAL-2021",
-    timestamp: "3d",
-    bookmarked: true,
   },
 ];

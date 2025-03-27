@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import SidebarContext from "../../context/SidebarContext";
 import { NavItem } from "../../constants/nav";
 import { SectionViewType } from "../../constants/nav";
+import SidebarIconLabel from "./SidebarIconLabel";
 
 interface NavItemComponentProps {
   item: NavItem;
@@ -18,14 +19,19 @@ const NavItemComponent: FC<NavItemComponentProps> = ({
 
   if (item.type === "link" && item.path) {
     return (
-      <NavLink to={item.path} className={`flex items-center h-12`}>
-        <div className="w-sidebar flex justify-center items-center flex-shrink-0">
-          {item.icon && <item.icon />}
-        </div>
-
-        <span className="whitespace-nowrap text-ellipsis font-semibold">
-          {item.label}
-        </span>
+      <NavLink
+        to={item.path}
+        className={({ isActive }) =>
+          `flex items-center h-sidebar-item-height hover:text-white focus:ring-2 focus:outline-none focus:ring-selected ${
+            isActive ? "text-selected" : "text-primary-foreground"
+          }`
+        }
+      >
+        <SidebarIconLabel
+          icon={item.icon && <item.icon />}
+          label={item.label}
+          notificationCount={item.notificationCount}
+        />
       </NavLink>
     );
   }
@@ -37,20 +43,20 @@ const NavItemComponent: FC<NavItemComponentProps> = ({
       <div className="flex flex-col">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center h-12 cursor-pointer"
+          className={`flex items-center h-sidebar-item-height cursor-pointer hover:text-white focus:ring-2 focus:outline-none focus:ring-selected ${
+            isOpen ? "text-selected" : "text-primary-foreground"
+          }`}
         >
-          <div className="w-sidebar flex justify-center items-center flex-shrink-0">
-            {item.icon && <item.icon />}
-          </div>
-
-          <span className="whitespace-nowrap text-ellipsis font-semibold">
-            {item.label}
-          </span>
+          <SidebarIconLabel
+            icon={item.icon && <item.icon />}
+            label={item.label}
+            notificationCount={item.notificationCount}
+          />
         </button>
 
         <div
           className={`
-            transition-[max-height] duration-300 ease-in-out overflow-hidden bg-white/5
+            transition-[max-height] duration-300 ease-in-out overflow-hidden bg-black/20
             ${isOpen ? "max-h-96 overflow-y-auto" : "max-h-0"}
           `}
         >
@@ -72,15 +78,13 @@ const NavItemComponent: FC<NavItemComponentProps> = ({
         onClick={() => {
           onOpenSection(item.secondaryViewType);
         }}
-        className="flex items-center h-12 cursor-pointer"
+        className="flex items-center h-sidebar-item-height cursor-pointer hover:text-white focus:ring-2 focus:outline-none focus:ring-selected w-full"
       >
-        <div className="w-sidebar flex justify-center items-center flex-shrink-0">
-          {item.icon && <item.icon />}
-        </div>
-
-        <span className="whitespace-nowrap text-ellipsis font-semibold">
-          {item.label}
-        </span>
+        <SidebarIconLabel
+          icon={item.icon && <item.icon />}
+          label={item.label}
+          notificationCount={item.notificationCount}
+        />
       </button>
     );
   }

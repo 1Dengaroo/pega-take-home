@@ -6,7 +6,7 @@ type SidebarHeaderProps = {
 const SidebarHeader = ({ title, subtitle }: SidebarHeaderProps) => {
   return (
     <div className="flex items-center">
-      <div className="h-16 w-sidebar flex justify-center items-center flex-shrink-0">
+      <div className="h-sidebar-header-height w-sidebar flex justify-center items-center flex-shrink-0">
         <span className="font-bold">{title}</span>
       </div>
 

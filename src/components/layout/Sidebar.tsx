@@ -11,9 +11,11 @@ import SectionView from "../sidebar/SectionView/SectionView";
 const Sidebar: FC = () => {
   const [collapsed, setCollapsed] = useState(true);
   const [sectionView, setSectionView] = useState<SectionViewType | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (query: string) => {
     setSectionView("search");
+    setSearchQuery(query);
     setCollapsed(false);
   };
 
@@ -39,11 +41,17 @@ const Sidebar: FC = () => {
         onMouseLeave={() => !sectionView && setCollapsed(true)}
       >
         {sectionView ? (
-          <SectionView type={sectionView} onClose={handleCloseSectionView} />
+          <SectionView
+            type={sectionView}
+            initialSearchQuery={searchQuery}
+            onClose={handleCloseSectionView}
+          />
         ) : (
           <>
             <SidebarHeader title="PEGA" subtitle="Demo" />
-            <Search onSearch={handleSearch} />
+            <div className="px-sidebar-search-padding mb-4">
+              <Search onSearch={handleSearch} />
+            </div>
             <Separator className="my-2" />
 
             <nav className="overflow-y-auto">

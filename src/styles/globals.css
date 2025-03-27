@@ -5,7 +5,13 @@
     "Helvetica Neue", Ubuntu, sans-serif;
 
   --spacing-sidebar: 80px;
-  --spacing-sidebar-expanded: 350px;
+  --spacing-sidebar-expanded: 375px;
+  --spacing-sidebar-item-height: 40px;
+  --spacing-sidebar-header-height: 56px;
+  --spacing-sidebar-search-height: 36px;
+  --spacing-sidebar-avatar-dimensions: 30px;
+  --spacing-sidebar-content-padding: 24px;
+  --spacing-sidebar-search-padding: 22px;
 
   --color-background: hsl(0 0% 100%);
   --color-foreground: hsl(240 10% 4%);
@@ -16,4 +22,27 @@
   --color-muted: hsl(240 5% 95%);
   --color-muted-foreground: hsl(240 3.8% 50%);
   --color-border: hsl(240 6% 90%);
+  --color-selected: hsl(198, 83%, 50%);
+  --color-destructive: hsl(0, 100%, 43%);
+  --color-destructive-foreground: hsl(0, 0%, 100%);
+}
+
+@layer base {
+  body {
+    @apply overscroll-none bg-background text-foreground;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Custom scrollbar styling. */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 5px;
+  }
 }

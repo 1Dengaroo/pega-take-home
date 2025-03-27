@@ -5,7 +5,7 @@ const Profile = () => {
         <img
           src={"avatar-fallback.svg"}
           alt={"alt"}
-          className={`h-7 w-7 rounded-full object-cover bg-muted p-1`}
+          className={`h-sidebar-avatar-dimensions w-sidebar-avatar-dimensions rounded-full object-cover bg-muted p-1`}
         />
       </div>
 
