@@ -28,6 +28,11 @@ const Sidebar: FC = () => {
     setSectionView(null);
   };
 
+  const handleLinkClick = () => {
+    setSectionView(null);
+    setCollapsed(true);
+  };
+
   return (
     <SidebarContext.Provider value={{ collapsed }}>
       <aside
@@ -60,6 +65,7 @@ const Sidebar: FC = () => {
                   key={item.label}
                   item={item}
                   onOpenSection={handleOpenSectionView}
+                  onLinkClick={handleLinkClick}
                 />
               ))}
             </nav>
@@ -72,6 +78,7 @@ const Sidebar: FC = () => {
                   key={item.label}
                   item={item}
                   onOpenSection={handleOpenSectionView}
+                  onLinkClick={handleLinkClick}
                 />
               ))}
 

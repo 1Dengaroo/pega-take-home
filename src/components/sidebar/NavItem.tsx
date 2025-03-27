@@ -8,11 +8,13 @@ import SidebarIconLabel from "./SidebarIconLabel";
 interface NavItemComponentProps {
   item: NavItem;
   onOpenSection: (type: SectionViewType) => void;
+  onLinkClick: () => void;
 }
 
 const NavItemComponent: FC<NavItemComponentProps> = ({
   item,
   onOpenSection,
+  onLinkClick,
 }) => {
   const { collapsed } = useContext(SidebarContext);
   const [isOpen, setIsOpen] = useState(false);
@@ -26,6 +28,7 @@ const NavItemComponent: FC<NavItemComponentProps> = ({
             isActive ? "text-selected" : "text-primary-foreground"
           }`
         }
+        onClick={onLinkClick}
       >
         <SidebarIconLabel
           icon={item.icon && <item.icon />}
@@ -65,6 +68,7 @@ const NavItemComponent: FC<NavItemComponentProps> = ({
               key={`${nestedItem.label}-${index}`}
               item={nestedItem}
               onOpenSection={onOpenSection}
+              onLinkClick={onLinkClick}
             />
           ))}
         </div>

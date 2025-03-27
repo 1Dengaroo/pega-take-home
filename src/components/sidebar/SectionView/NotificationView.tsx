@@ -12,13 +12,12 @@ const NotificationsView: FC = () => {
           key={index}
           className={`
             py-3 px-2 cursor-pointer transition-colors
-            hover:text-white focus:outline-none
+            hover:text-white focus:outline-none h-auto
             ${
               selectedItem === index
                 ? "text-selected"
                 : "text-primary-foreground"
             }
-            ${item.title.length > 30 ? "h-auto" : ""}
           `}
           onClick={() => setSelectedItem(index)}
           tabIndex={0}
