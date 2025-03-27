@@ -63,7 +63,7 @@ export const navItems: NavItem[] = [
     icon: Home,
   },
   {
-    label: "My Dashboard",
+    label: "My Work",
     type: "link",
     path: "/dashboard",
     icon: Sparkle,

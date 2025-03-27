@@ -59,7 +59,7 @@ const Sidebar: FC = () => {
             </div>
             <Separator className="my-2" />
 
-            <nav className="overflow-y-auto">
+            <nav className="overflow-y-auto py-1">
               {navItems.map((item) => (
                 <NavItemComponent
                   key={item.label}

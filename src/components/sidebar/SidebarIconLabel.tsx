@@ -17,7 +17,7 @@ const SidebarIconLabel: FC<SidebarIconLabelProps> = ({
         <div className="relative">
           {icon}
           {notificationCount && (
-            <span className="absolute -top-2.5 -right-2.5 px-1 py-0.5 bg-destructive text-destructive-foreground text-xs rounded-full flex items-center justify-center">
+            <span className="absolute -top-2.5 -right-2.5 px-1 bg-destructive text-destructive-foreground text-xs rounded-full flex items-center justify-center">
               {notificationCount}
             </span>
           )}
