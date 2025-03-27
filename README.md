@@ -44,6 +44,6 @@ My submission uses:
 
 High level Approach:
 
-- `SidebarContext` serves as the central state manager for all navigation logic
+- `SidebarContext` serves as the state manager for the navigation logic
 - All sidebar behavior logic (open/close, section views, search) is contained within this context
-- Component files are purely presentational and interact with the context via the `useSidebar` hook
+- Components are mostly presentational and just interact with the context via the `useSidebar` hook
